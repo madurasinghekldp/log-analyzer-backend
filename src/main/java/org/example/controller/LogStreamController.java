@@ -1,5 +1,7 @@
 package org.example.controller;
 
+import org.example.dto.LogEntry;
+import org.example.stream.LogStream;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +14,17 @@ import reactor.core.publisher.Flux;
 @CrossOrigin
 public class LogStreamController {
 
+    private final LogStream stream;
+
+    public LogStreamController(LogStream stream) {
+        this.stream = stream;
+    }
+
+    // Live stream endpoint
     @GetMapping(value = "/logs/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<String> streamLogs() {
-        // Simulated log streaming every 2 seconds
-        return Flux.interval(Duration.ofSeconds(2))
-                .map(seq -> "Log entry #" + seq);
+    public Flux<LogEntry> streamLogs() {
+        // keepAlive helps some proxies keep the connection open
+        return stream.flux().mergeWith(Flux.<LogEntry>never())
+                .timeout(Duration.ofHours(12)); // long-lived connection
     }
 }
