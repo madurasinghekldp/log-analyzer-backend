@@ -7,4 +7,12 @@ spring:
       local-datacenter: datacenter1
       schema-action: none
 
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: ui-live-stream
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
 
