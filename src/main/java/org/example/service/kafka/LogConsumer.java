@@ -1,10 +1,12 @@
 package org.example.service.kafka;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.dto.LogEntry;
+import org.example.dto.StreamLog;
 import org.example.stream.LogStream;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LogConsumer {
     private final ObjectMapper mapper;
     private final LogStream stream;
@@ -18,7 +20,7 @@ public class LogConsumer {
     public void onMessage(String value) {
         try {
             // value is the JSON your producer sent
-            LogEntry e = mapper.readValue(value, LogEntry.class);
+            StreamLog e = mapper.readValue(value, StreamLog.class);
 
             // Optional: only push certain levels to the UI
             // if (!"ERROR".equalsIgnoreCase(e.getLevel())) return;

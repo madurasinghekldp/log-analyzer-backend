@@ -1,7 +1,7 @@
 package org.example.controller;
 
-import org.example.dto.ErrorLog;
-import org.example.service.ErrorLogService;
+import org.example.dto.Log;
+import org.example.service.LogService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,14 +14,14 @@ import java.util.List;
 @CrossOrigin
 public class LogController {
 
-    private final ErrorLogService errorLogService;
+    private final LogService logService;
 
-    public LogController(ErrorLogService errorLogService) {
-        this.errorLogService = errorLogService;
+    public LogController(LogService logService) {
+        this.logService = logService;
     }
 
     @GetMapping
-    public List<ErrorLog> getAllLogs() {
-        return errorLogService.getAllErrorLogs();
+    public List<Log> getAllLogs() {
+        return logService.getAllErrorLogs();
     }
 }

@@ -1,10 +1,14 @@
-package org.example.dto;
+package org.example.entity;
 
-
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.util.UUID;
 
-public class ErrorLog {
+@Table("error_logs")
+public class LogEntity {
+
+    @PrimaryKey
     private UUID id;
     private String timestamp;
     private String level;
@@ -41,6 +45,4 @@ public class ErrorLog {
     public void setMessage(String message) {
         this.message = message;
     }
-
-
 }

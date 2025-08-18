@@ -1,11 +1,11 @@
 package org.example.service;
 
-import org.example.dto.ErrorLog;
+import org.example.dto.Log;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public interface ErrorLogService {
-    List<ErrorLog> getAllErrorLogs();
+public interface LogService {
+    List<Log> getAllLogs();
 }

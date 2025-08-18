@@ -1,17 +1,10 @@
-package org.example.entity;
+package org.example.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
-import org.springframework.data.cassandra.core.mapping.Table;
+
 
 import java.util.UUID;
 
-@Table("error_logs")
-public class ErrorLogEntity {
-
-    @PrimaryKey
+public class Log {
     private UUID id;
     private String timestamp;
     private String level;
@@ -48,4 +41,6 @@ public class ErrorLogEntity {
     public void setMessage(String message) {
         this.message = message;
     }
+
+
 }

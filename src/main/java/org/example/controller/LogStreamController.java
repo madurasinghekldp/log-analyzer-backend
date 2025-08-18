@@ -1,6 +1,6 @@
 package org.example.controller;
 
-import org.example.dto.LogEntry;
+import org.example.dto.StreamLog;
 import org.example.stream.LogStream;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,9 +24,9 @@ public class LogStreamController {
 
     // Live stream endpoint
     @GetMapping(value = "/logs/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<LogEntry> streamLogs() {
+    public Flux<StreamLog> streamLogs() {
         // keepAlive helps some proxies keep the connection open
-        return stream.flux().mergeWith(Flux.<LogEntry>never())
+        return stream.flux().mergeWith(Flux.<StreamLog>never())
                 .timeout(Duration.ofHours(12)); // long-lived connection
     }
 }

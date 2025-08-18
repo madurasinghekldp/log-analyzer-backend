@@ -1,12 +1,12 @@
 package org.example.dto;
 
-public class LogEntry {
+public class StreamLog {
     private String timestamp;
     private String level;
     private String message;
 
-    public LogEntry() {}
-    public LogEntry(String timestamp, String level, String message) {
+    public StreamLog() {}
+    public StreamLog(String timestamp, String level, String message) {
         this.timestamp = timestamp; this.level = level; this.message = message;
     }
     public String getTimestamp() { return timestamp; }
