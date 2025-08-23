@@ -22,6 +22,6 @@ public class LogController {
 
     @GetMapping
     public List<Log> getAllLogs() {
-        return logService.getAllErrorLogs();
+        return logService.getAllLogs();
     }
 }

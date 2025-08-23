@@ -5,11 +5,11 @@ import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.util.UUID;
 
-@Table("error_logs")
+@Table("logs")
 public class LogEntity {
 
     @PrimaryKey
-    private UUID id;
+    private UUID id = UUID.randomUUID();
     private String timestamp;
     private String level;
     private String message;
